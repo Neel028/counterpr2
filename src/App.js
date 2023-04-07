@@ -29,10 +29,13 @@ function App() {
   return (
     <div className="App">
       <h1>{state1}</h1>
+      
+        <center>
       <button onClick={() => setState2(true)}>start</button>
       <button onClick={() => setState2(true)}>resume </button>
       <button onClick={() => setState2(false)}>stop</button>
       <button onClick={() => clear()}>restart</button>
+      </center>
     </div>
   );
 }

@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
+  let [state1, setState1] = useState(0);
+  let [state2, setState2] = useState(false);
+  let id;
+
+  useEffect(() => {
+    if(state2){
+      id = setInterval(() => {
+        setState1(state1+1)
+      }, 1000);
+    }
+    else{
+      setState1(state1)
+    }
+    
+    return () => {
+      clearInterval(id)
+    };
+  }, [state1,state2]);
+  
+      let clear=()=>{
+        setState1(0)
+        setState2(false)
+      }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{state1}</h1>
+      <button onClick={() => setState2(true)}>start</button>
+      <button onClick={() => setState2(true)}>resume </button>
+      <button onClick={() => setState2(false)}>stop</button>
+      <button onClick={() => clear()}>restart</button>
     </div>
   );
 }
